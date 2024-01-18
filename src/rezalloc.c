@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../minirt.h"
 
 void	*rezalloc(void *ptr, size_t c_size, size_t n_size)
 {
