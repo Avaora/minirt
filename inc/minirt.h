@@ -6,7 +6,7 @@
 # include <sys/errno.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "libft/libft.h"
+# include <libft.h>
 
 # define BUF_SIZE 128
 # define ERR_FILE "File error"
