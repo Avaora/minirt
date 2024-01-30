@@ -1,5 +1,5 @@
-#include "minirt.h"
-#include "mlx/mlx.h"
+#include <minirt.h>
+#include <mlx.h>
 
 int	main(int argc, char *argv[])
 {

@@ -4,7 +4,7 @@ LIBFT_DIR = libft/
 SRCS_DIR = src/
 LIBMLX = libmlx.dylib
 LIBFT = libft.a
-DEPS = minirt.h libft.h mlx.h
+HEADS = minirt.h libft.h mlx.h
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 LIBS = -lm -L$(LIBMLX_DIR) -lmlx -L$(LIBFT_DIR) -lft
@@ -28,7 +28,7 @@ $(LIBFT_DIR)$(LIBFT) :
 	cd $(LIBFT_DIR) && make && cp libft.h ../$(INC_DIR)
 $(LIBMLX_DIR)$(LIBMLX) :
 	cd $(LIBMLX_DIR) && make && cp mlx.h ../$(INC_DIR) && cp libmlx.dylib ..
-$(OBJS) : %.o : %.c $(addprefix $(INC_DIR),$(DEPS))
+$(OBJS) : %.o : %.c $(addprefix $(INC_DIR),$(HEADS))
 	$(CC) $(CFLAGS) $< -c -o $@
 clean :
 	cd $(LIBFT_DIR) && make clean

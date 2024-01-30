@@ -1,4 +1,4 @@
-#include "../minirt.h"
+#include <minirt.h>
 
 int	file_ops(t_file *file)
 {
