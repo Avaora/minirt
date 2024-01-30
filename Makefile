@@ -1,42 +1,41 @@
 INC_DIR = inc/
-LIBMLX_LOC = mlx/
-LIBFT_LOC = libft/
-SRCS_LOC = src/
+LIBMLX_DIR = mlx/
+LIBFT_DIR = libft/
+SRCS_DIR = src/
 LIBMLX = libmlx.dylib
 LIBFT = libft.a
 DEPS = minirt.h libft.h mlx.h
-DEPS = $(patsubst %.h,$(INC_DIR)%.h,$(DEPS))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
-LIBS = -lm -L$(LIBMLX_LOC) -lmlx -L$(LIBFT_LOC) -lft
+LIBS = -lm -L$(LIBMLX_DIR) -lmlx -L$(LIBFT_DIR) -lft
 RM = rm -f
-SRCS =	check_file.c \
+FILES =	check_file.c \
 		file_ops.c \
 		main.c \
 		open_file.c \
 		read_to_mem.c \
 		rezalloc.c \
 		set_err.c \
-		zalloc.c 
-SRCS = $(patsubst %.c,$(SRCS_LOC)%.c,$(SRCS))
+		zalloc.c
+SRCS = $(addprefix $(SRCS_DIR),$(FILES))
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 NAME = miniRT
 
 all : $(NAME)
-$(NAME) : $(LIBFT_LOC)$(LIBFT) $(LIBMLX_LOC)$(LIBMLX) $(OBJS)
+$(NAME) : $(LIBFT_DIR)$(LIBFT) $(LIBMLX_DIR)$(LIBMLX) $(OBJS)
 	$(CC) -o $(NAME) $(CFLAGS) $(LIBS) $(OBJS)
-$(LIBFT_LOC)$(LIBFT) :
-	cd $(LIBFT_LOC) && make && cp libft.h ../$(INC_DIR)
-$(LIBMLX_LOC)$(LIBMLX) :
-	cd $(LIBMLX_LOC) && make && cp mlx.h ../$(INC_DIR) && cp libmlx.dylib ..
-$(OBJS) : %.o : %.c $(DEPS)
+$(LIBFT_DIR)$(LIBFT) :
+	cd $(LIBFT_DIR) && make && cp libft.h ../$(INC_DIR)
+$(LIBMLX_DIR)$(LIBMLX) :
+	cd $(LIBMLX_DIR) && make && cp mlx.h ../$(INC_DIR) && cp libmlx.dylib ..
+$(OBJS) : %.o : %.c $(addprefix $(INC_DIR),$(DEPS))
 	$(CC) $(CFLAGS) $< -c -o $@
 clean :
-	cd $(LIBFT_LOC) && make clean
-	cd $(LIBMLX_LOC) && make clean
+	cd $(LIBFT_DIR) && make clean
+	cd $(LIBMLX_DIR) && make clean
 	$(RM) $(OBJS)
 fclean : clean
-	cd $(LIBFT_LOC) && make fclean
+	cd $(LIBFT_DIR) && make fclean
 	$(RM) $(NAME) libmlx.dylib
 re : fclean all
 .PHONY : all clean fclean re
