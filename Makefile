@@ -31,6 +31,7 @@ $(LIBMLX_DIR)$(LIBMLX) :
 $(OBJS) : %.o : %.c $(addprefix $(INC_DIR),$(HEADS))
 	$(CC) $(CFLAGS) $< -c -o $@
 clean :
+	$(RM) $(INC_DIR)libft.h $(INC_DIR)mlx.h
 	cd $(LIBFT_DIR) && make clean
 	cd $(LIBMLX_DIR) && make clean
 	$(RM) $(OBJS)
