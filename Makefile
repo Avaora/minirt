@@ -2,8 +2,6 @@ INC_DIR = inc/
 LIBMLX_DIR = mlx/
 LIBFT_DIR = libft/
 SRCS_DIR = src/
-LIBMLX = libmlx.dylib
-LIBFT = libft.a
 HEADS = minirt.h libft.h mlx.h
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
@@ -21,22 +19,31 @@ SRCS = $(addprefix $(SRCS_DIR),$(FILES))
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 NAME = miniRT
 
-all : $(NAME)
-$(NAME) : $(LIBFT_DIR)$(LIBFT) $(LIBMLX_DIR)$(LIBMLX) $(OBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(LIBS) $(OBJS)
-$(LIBFT_DIR)$(LIBFT) :
-	cd $(LIBFT_DIR) && make && cp libft.h ../$(INC_DIR)
-$(LIBMLX_DIR)$(LIBMLX) :
-	cd $(LIBMLX_DIR) && make && cp mlx.h ../$(INC_DIR) && cp libmlx.dylib ..
-$(OBJS) : %.o : %.c $(addprefix $(INC_DIR),$(HEADS))
-	$(CC) $(CFLAGS) $< -c -o $@
-clean :
-	$(RM) $(INC_DIR)libft.h $(INC_DIR)mlx.h
-	cd $(LIBFT_DIR) && make clean
-	cd $(LIBMLX_DIR) && make clean
-	$(RM) $(OBJS)
-fclean : clean
-	cd $(LIBFT_DIR) && make fclean
-	$(RM) $(NAME) libmlx.dylib
-re : fclean all
 .PHONY : all clean fclean re
+
+all : $(NAME)
+
+$(NAME) : $(LIBFT_DIR)libft.a $(LIBMLX_DIR)libmlx.dylib $(OBJS)
+	$(CC) -o $(NAME) $(CFLAGS) $(LIBS) $(OBJS)
+
+$(LIBFT_DIR)libft.a :
+	$(MAKE) -C $(LIBFT_DIR)
+	cp -p $(LIBFT_DIR)libft.h $(INC_DIR)
+
+$(LIBMLX_DIR)libmlx.dylib :
+	$(MAKE) -C $(LIBMLX_DIR)
+	cp -p $(LIBMLX_DIR)mlx.h $(INC_DIR) && cp -p $(LIBMLX_DIR)libmlx.dylib ./
+
+$(OBJS) : %.o : %.c $(addprefix $(INC_DIR),$(HEADS))
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean :
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(LIBMLX_DIR) clean
+	$(RM) $(OBJS)
+
+fclean : clean
+	$(RM) $(INC_DIR)libft.h $(INC_DIR)mlx.h
+	$(RM) $(NAME) libmlx.dylib
+	
+re : fclean all
