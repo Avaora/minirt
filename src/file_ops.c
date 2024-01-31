@@ -2,7 +2,7 @@
 
 int	file_ops(t_file *file)
 {
-	check_file(file);
+	check_path(file);
 	open_file(file);
 	read_to_mem(file);
 	

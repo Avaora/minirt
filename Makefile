@@ -7,7 +7,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 LIBS = -lm -L$(LIBMLX_DIR) -lmlx -L$(LIBFT_DIR) -lft
 RM = rm -f
-FILES =	check_file.c \
+FILES =	check_path.c \
 		file_ops.c \
 		main.c \
 		open_file.c \

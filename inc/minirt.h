@@ -15,10 +15,10 @@ typedef struct	s_file
 {
 	int			fd;
 	const char	*path;
-	char		*scene;	
+	char		*scene;
 }				t_file;
 
-void	check_file(t_file *file);
+void	check_path(t_file *file);
 int		file_ops(t_file *file);
 void	open_file(t_file *file);
 void	read_to_mem(t_file *file);
