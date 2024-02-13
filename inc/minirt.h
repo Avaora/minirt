@@ -18,8 +18,12 @@ typedef struct	s_file
 	char		*scene;
 }				t_file;
 
+typedef struct	s_mem
+{
+	char		*scene;
+}				t_mem;
 void	check_path(t_file *file);
-int		file_ops(t_file *file);
+int		file_ops(t_file *file, t_mem *mem);
 void	open_file(t_file *file);
 void	read_to_mem(t_file *file);
 void	*rezalloc(void *ptr, size_t c_size, size_t n_size);

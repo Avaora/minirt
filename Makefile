@@ -1,5 +1,5 @@
 INC_DIR = inc/
-LIBMLX_DIR = mlx/
+LIBMLX_DIR = libmlx/
 LIBFT_DIR = libft/
 SRCS_DIR = src/
 HEADS = minirt.h libft.h mlx.h
@@ -8,8 +8,10 @@ CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 LIBS = -lm -L$(LIBMLX_DIR) -lmlx -L$(LIBFT_DIR) -lft
 RM = rm -f
 FILES =	check_path.c \
+		check_scene.c \
 		file_ops.c \
 		main.c \
+		mem_ops.c \
 		open_file.c \
 		read_to_mem.c \
 		rezalloc.c \
