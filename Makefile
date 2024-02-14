@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 LIBS = -lm -L$(LIBMLX_DIR) -lmlx -L$(LIBFT_DIR) -lft
 RM = rm -f
 FILES =	check_path.c \
-		check_scene.c \
+		lexer.c \
 		file_ops.c \
 		main.c \
 		mem_ops.c \

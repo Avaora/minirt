@@ -2,6 +2,6 @@
 
 int	mem_ops(t_mem *mem)
 {
-	check_scene(mem);
+	lexer(mem);
 	return (0);
 }
