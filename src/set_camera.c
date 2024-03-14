@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 void	set_camera(t_world *world, t_scene const *scene)
 {

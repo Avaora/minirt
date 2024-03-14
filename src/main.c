@@ -1,31 +1,52 @@
-#include <minirt.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bukaya <bukaya@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/13 23:10:58 by bukaya            #+#    #+#             */
+/*   Updated: 2024/03/13 23:11:01 by bukaya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <miniRT.h>
 #include <mlx.h>
-#include <stdio.h>
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
+	t_list	*scene_elements;
+	t_scene	*current_element;
 
+	scene_elements = NULL;
+	if (argc != 2)
+		return (ft_puterror("Invalid number of arguments"));
+	if (ft_parse_elements(&scene_elements, argv) == FAILURE)
+	{
+		ft_lstclear(&scene_elements, free);
+		exit(FAILURE);
+	}
+	while (scene_elements)
+	{
+		current_element = (t_scene *)scene_elements->content;
+		printf("Identifier: %d\n", current_element->identifier);
+		printf("Coordinates: %f, %f, %f\n", current_element->coord[0],
+			current_element->coord[1], current_element->coord[2]);
+		printf("RGB: %f, %f, %f\n", current_element->rgb[0],
+			current_element->rgb[1], current_element->rgb[2]);
+		printf("Ambient Light: %f\n", current_element->amb_light);
+		printf("Brightness: %f\n", current_element->brightness);
+		printf("FOV: %f\n", current_element->fov);
+		printf("Diameter: %f\n", current_element->diameter);
+		printf("Height: %f\n", current_element->height);
+		printf("Vector: %f, %f, %f\n", current_element->vector[0],
+			current_element->vector[1], current_element->vector[2]);
+		printf("\n");
+		scene_elements = scene_elements->next;
+	}
 	t_world	world;
 
-	make_world(&world, &scene);
-	/*scene.camera.center = {0, 0, 0};
-	scene.camera.direction = {0, 0, 1};
-	scene.camera.field_of_view = 70;
-	
-	scene.aspect_ratio = 16.0 / 9.0;
-	scene.image_width = 512;
-	scene.image_height = scene.image_width / scene.aspect_ratio;
-	if (scene.image_height < 1)
-		scene.image_height = 1;
-	// this is the order of assigning don't change the order
-	scene.viewport_height = 2.0;
-	scene.viewport_width = scene.viewport_height * (double(scene.image_width) / scene.image_height);
-	scene.viewport_u = {scene.viewport_width, 0, 0};
-	scene.viewport_v = {0, -scene.viewport_height, 0};
-	scene.camera.focal_length = (vect_len(scene.viewport_u) / 2) * tan((scene.camera.field_of_view / 2) * (M_PI / 180));
-	scene.delta_u = vect_scale(&scene.viewport_u, ((double)1 / scene.image_width));
-	scene.delta_v = vect_scale(&scene.viewport_v, ((double)1 / scene.image_height));
-
-	calc_upper_left(&scene);*/
+	make_world(&world, scene_elements);
+	ft_lstclear(&scene_elements, free);
 	return (0);
 }

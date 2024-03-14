@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 t_vect	vect_sub(t_vect const *vect1, t_vect const *vect2)
 {

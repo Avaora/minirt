@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 void	set_light(t_world *world, t_scene const *scene)
 {

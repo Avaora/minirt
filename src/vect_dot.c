@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 double	vect_dot(t_vect const *vect1, t_vect const *vect2)
 {

@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 void	set_screen(t_world *world)
 {

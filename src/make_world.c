@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 void	make_world(t_world *world, t_list const *scene)
 {

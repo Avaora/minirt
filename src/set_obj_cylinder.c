@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 void	set_obj_cylinder(t_world *world, t_scene const *scene)
 {

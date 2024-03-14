@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 t_vect	vect_unit(t_vect const *vect)
 {

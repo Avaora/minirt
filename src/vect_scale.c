@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include <miniRT.h>
 
 t_vect	vect_scale(t_vect const *vect, double scalar)
 {

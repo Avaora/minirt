@@ -2,13 +2,37 @@ INC_DIR = inc/
 LIBMLX_DIR = libmlx/
 LIBFT_DIR = libft/
 SRCS_DIR = src/
-HEADS = minirt.h libft.h mlx.h
+HEADS = miniRT.h libft.h mlx.h
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 LIBS = -lm -L$(LIBMLX_DIR) -lmlx -L$(LIBFT_DIR) -lft
 RM = rm -f
 FILES =	calc_first_pixel.c \
 		calc_upper_left.c \
+		ft_arrfree.c \
+		ft_arrlen.c \
+		ft_assign_element_values.c \
+		ft_atof_parser.c \
+		ft_atof.c \
+		ft_check_element_count.c \
+		ft_check_path.c \
+		ft_check_range.c \
+		ft_fill_ambient.c \
+		ft_fill_brightness.c \
+		ft_fill_coordinates.c \
+		ft_fill_diameter.c \
+		ft_fill_fov.c \
+		ft_fill_height.c \
+		ft_fill_identifier.c \
+		ft_fill_rgb.c \
+		ft_fill_scene_struct.c \
+		ft_fill_vector.c \
+		ft_mandatory_counter.c \
+		ft_parse_elements.c \
+		ft_puterror.c \
+		ft_readline.c \
+		ft_safecmp.c \
+		ft_split_set.c \
 		make_world.c \
 		rezalloc.c \
 		set_ambient.c \
