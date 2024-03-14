@@ -182,9 +182,20 @@ typedef struct	s_world
 	t_list		*objs;
 }				t_world;
 
+typedef struct	s_window
+{
+	char		*win_title;
+	int			win_width;
+	int			win_height;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+}				t_window;
+
 /*-------------FUNCTION-PROTOTYPES----------------*/
 void	calc_first_pixel(t_world *world);
 void	calc_upper_left(t_world *world);
+unsigned int	calculate_pixel_color(t_ray *ray, t_world *world);
 int		ft_arrfree(char **arr);
 size_t	ft_arrlen(char **arr);
 int		ft_assign_element_values(t_list **list, char *line);
@@ -212,6 +223,7 @@ const char	*ft_isinset(const char *str, const char *set, size_t i);
 size_t	ft_word_counter(const char *str, const char *set);
 char	**ft_split_set(const char *str, const char *set);
 void	make_world(t_world *world, t_list const *scene);
+void	render(t_world *world, t_window *win);
 void	*rezalloc(void *ptr, size_t c_size, size_t n_size);
 void	set_ambient(t_world *world, t_scene const *scene);
 void	set_camera(t_world *world, t_scene const *scene);
@@ -223,6 +235,7 @@ void	set_obj_sphere(t_world *world, t_scene const *scene);
 void	set_objects(t_world *world, t_list const *scene);
 void	set_screen(t_world *world);
 void	set_viewport_vects(t_world *world);
+void	set_window(t_window *win, t_world *world);
 t_vect	vect_add(t_vect const *vect1, t_vect const *vect2);
 double	vect_dot(t_vect const *vect1, t_vect const *vect2);
 double	vect_len(t_vect const *vect);

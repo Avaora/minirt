@@ -15,8 +15,10 @@
 
 int	main(int argc, char **argv)
 {
-	t_list	*scene_elements;
-	t_scene	*current_element;
+	t_list		*scene_elements;
+	t_scene		*current_element;
+	t_world		world;
+	t_window	win;
 
 	scene_elements = NULL;
 	if (argc != 2)
@@ -44,9 +46,13 @@ int	main(int argc, char **argv)
 		printf("\n");
 		scene_elements = scene_elements->next;
 	}
-	t_world	world;
 
 	make_world(&world, scene_elements);
+	set_window(&win, &world);
+	render(&world, &win);
+	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, win.img_ptr, 0, 0);
+	mlx_loop(win.mlx_ptr);
+	
 	ft_lstclear(&scene_elements, free);
 	return (0);
 }
