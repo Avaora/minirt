@@ -7,16 +7,28 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 LIBS = -lm -L$(LIBMLX_DIR) -lmlx -L$(LIBFT_DIR) -lft
 RM = rm -f
-FILES =	check_path.c \
-		lexer.c \
-		file_ops.c \
-		main.c \
-		mem_ops.c \
-		open_file.c \
-		read_to_mem.c \
+FILES =	calc_first_pixel.c \
+		calc_upper_left.c \
+		make_world.c \
 		rezalloc.c \
+		set_ambient.c \
+		set_camera.c \
 		set_err.c \
-		zalloc.c
+		set_light.c \
+		set_obj_cylinder.c \
+		set_obj_plane.c \
+		set_obj_sphere.c \
+		set_objects.c \
+		set_screen.c \
+		set_viewport_vects.c \
+		vect_add.c \
+		vect_dot.c \
+		vect_len.c \
+		vect_scale.c \
+		vect_sub.c \
+		vect_unit.c \
+		zalloc.c \
+		main.c
 SRCS = $(addprefix $(SRCS_DIR),$(FILES))
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 NAME = miniRT
