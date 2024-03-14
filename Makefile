@@ -9,6 +9,7 @@ LIBS = -lm -L$(LIBMLX_DIR) -lmlx -L$(LIBFT_DIR) -lft
 RM = rm -f
 FILES =	calc_first_pixel.c \
 		calc_upper_left.c \
+		calculate_pixel_color.c \
 		ft_arrfree.c \
 		ft_arrlen.c \
 		ft_assign_element_values.c \
@@ -34,6 +35,7 @@ FILES =	calc_first_pixel.c \
 		ft_safecmp.c \
 		ft_split_set.c \
 		make_world.c \
+		render.c \
 		rezalloc.c \
 		set_ambient.c \
 		set_camera.c \
@@ -45,6 +47,7 @@ FILES =	calc_first_pixel.c \
 		set_objects.c \
 		set_screen.c \
 		set_viewport_vects.c \
+		set_window.c \
 		vect_add.c \
 		vect_dot.c \
 		vect_len.c \
