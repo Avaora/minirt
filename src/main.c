@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bukaya <bukaya@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 23:10:58 by bukaya            #+#    #+#             */
-/*   Updated: 2024/03/13 23:11:01 by bukaya           ###   ########.fr       */
+/*   Updated: 2024/03/14 16:55:10 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	}
 
 	make_world(&world, scene_elements);
-	set_window(&win, &world);
+	make_window(&world, &win);
 	render(&world, &win);
 	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, win.img_ptr, 0, 0);
 	mlx_loop(win.mlx_ptr);

@@ -5,11 +5,13 @@ SRCS_DIR = src/
 HEADS = miniRT.h libft.h mlx.h get_next_line.h
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror -I $(INC_DIR)
-LIBS = -L $(LIBMLX_DIR) -lmlx -L $(LIBFT_DIR) -lft -lm -lXext -lX11
+LIBS = -L $(LIBMLX_DIR) -lmlx -L $(LIBFT_DIR) -lft -lm
 RM = rm -f
-FILES =	calc_first_pixel.c \
+FILES = calc_first_pixel.c \
+		calc_pixel_color.c \
 		calc_upper_left.c \
-		calculate_pixel_color.c \
+		calc_vw_pixel.c \
+		fbuf_pixel_put.c \
 		ft_arrfree.c \
 		ft_arrlen.c \
 		ft_assign_element_values.c \
@@ -36,6 +38,7 @@ FILES =	calc_first_pixel.c \
 		ft_split_set.c \
 		get_next_line.c \
 		get_next_line_utils.c \
+		make_window.c \
 		make_world.c \
 		render.c \
 		rezalloc.c \
@@ -49,7 +52,6 @@ FILES =	calc_first_pixel.c \
 		set_objects.c \
 		set_screen.c \
 		set_viewport_vects.c \
-		set_window.c \
 		vect_add.c \
 		vect_dot.c \
 		vect_len.c \
@@ -66,16 +68,16 @@ NAME = miniRT
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT_DIR)libft.a $(LIBMLX_DIR)libmlx.a $(OBJS)
+$(NAME) : $(LIBFT_DIR)libft.a $(LIBMLX_DIR)libmlx.dylib $(OBJS)
 	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBS)
 
 $(LIBFT_DIR)libft.a :
 	$(MAKE) -C $(LIBFT_DIR) bonus
 	cp -p $(LIBFT_DIR)libft.h $(INC_DIR)
 
-$(LIBMLX_DIR)libmlx.a :
+$(LIBMLX_DIR)libmlx.dylib :
 	$(MAKE) -C $(LIBMLX_DIR)
-	cp -p $(LIBMLX_DIR)mlx.h $(INC_DIR) && cp -p $(LIBMLX_DIR)libmlx.a ./
+	cp -p $(LIBMLX_DIR)mlx.h $(INC_DIR) && cp -p $(LIBMLX_DIR)libmlx.dylib ./
 
 $(OBJS) : %.o : %.c $(addprefix $(INC_DIR),$(HEADS))
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -87,6 +89,6 @@ clean :
 
 fclean : clean
 	$(RM) $(INC_DIR)libft.h $(INC_DIR)mlx.h
-	$(RM) $(NAME) libmlx.a
+	$(RM) $(NAME) libmlx.dylib
 	
 re : fclean all

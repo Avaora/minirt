@@ -35,8 +35,8 @@
 # define UNDEFINED_IDENTIFIER_ERR	"Invalid identifer"
 # define NON_NUMERIC_ERR 			"Info contains non-numeric characters"
 /*-------------------WORLD---MACROS----------------*/
-# define IMG_WIDTH 256
-# define IMG_HEIGHT 256
+# define IMG_WIDTH 1280
+# define IMG_HEIGHT 720
 # define VIEWPORT_HEIGHT 2.0
 /*------------------ENUM-DECLARATIONS--------------*/
 enum	e_types
@@ -181,6 +181,7 @@ typedef struct	s_world
 	t_vect		delta_v;
 	t_vect		upper_left;
 	t_vect		first_pixel;
+	t_vect		vw_pixel;
 	t_list		*objs;
 }				t_world;
 
@@ -192,12 +193,20 @@ typedef struct	s_window
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
+	int			*fbuf;
+	int			img_x;
+	int			img_y;
+	int			bpp;
+	int			bpl;
+	int			endian;
 }				t_window;
 
 /*-------------FUNCTION-PROTOTYPES----------------*/
 void	calc_first_pixel(t_world *world);
+int		calc_pixel_color();
 void	calc_upper_left(t_world *world);
-int	calculate_pixel_color(t_ray *ray, t_world *world);
+void	calc_vw_pixel(t_world *world, t_window *win);
+void	fbuf_pixel_put(t_window *win, int color);
 int		ft_arrfree(char **arr);
 size_t	ft_arrlen(char **arr);
 int		ft_assign_element_values(t_list **list, char *line);
@@ -224,6 +233,7 @@ int		ft_safecmp(const char *str1, const char *str2, size_t len);
 const char	*ft_isinset(const char *str, const char *set, size_t i);
 size_t	ft_word_counter(const char *str, const char *set);
 char	**ft_split_set(const char *str, const char *set);
+void	make_window(t_world *world, t_window *win);
 void	make_world(t_world *world, t_list const *scene);
 void	render(t_world *world, t_window *win);
 void	*rezalloc(void *ptr, size_t c_size, size_t n_size);
@@ -237,7 +247,6 @@ void	set_obj_sphere(t_world *world, t_scene const *scene);
 void	set_objects(t_world *world, t_list const *scene);
 void	set_screen(t_world *world);
 void	set_viewport_vects(t_world *world);
-void	set_window(t_window *win, t_world *world);
 t_vect	vect_add(t_vect const *vect1, t_vect const *vect2);
 double	vect_dot(t_vect const *vect1, t_vect const *vect2);
 double	vect_len(t_vect const *vect);

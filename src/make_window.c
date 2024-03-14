@@ -1,6 +1,6 @@
 #include <miniRT.h>
 
-void	set_window(t_window *win, t_world *world)
+void	make_window(t_world *world, t_window *win)
 {
 	win->win_title = ft_strdup("miniRT");
 	win->win_width = world->image_width;
@@ -16,4 +16,8 @@ void	set_window(t_window *win, t_world *world)
 		win->win_width, win->win_height);
 	if (win->img_ptr == NULL)
 		set_err(NULL);
+	win->fbuf = (int *)mlx_get_data_addr(win->img_ptr, &win->bpp,
+		&win->bpl, &win->endian);
+	win->img_x = 0;
+	win->img_y = 0;
 }
