@@ -8,7 +8,12 @@ void	render(t_world *world, t_window *win)
 	int		width;
 	int		height;
 
+	(void)ray;
 	height = 0;
+	int bpp = 24;
+	int	size_l = win->win_width;
+	int endi = 0;
+	char *ptr = mlx_get_data_addr(win->img_ptr, &bpp, &size_l, &endi);
 	while (height < world->image_height)
 	{
 		width = 0;
@@ -20,7 +25,7 @@ void	render(t_world *world, t_window *win)
 			crr_pix = vect_add(&crr_pix, &tmp);
 			ray.origin = world->camera.center;
 			ray.direction = crr_pix;
-			win->(img_ptr + (height * world->image_width) + width) = calculate_pixel_color(&ray, win);
+			*((int*)ptr + (width + (height * world->image_width))) = calculate_pixel_color(&ray, world);
 			width++;
 		}
 		height++;

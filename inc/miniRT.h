@@ -8,6 +8,8 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <libft.h>
+# include <get_next_line.h>
+# include <mlx.h>
 
 /*-------------------DEFINITIONS-------------------*/
 # define SPLIT_SET 			"\t\v\f\r\n ,"
@@ -33,8 +35,8 @@
 # define UNDEFINED_IDENTIFIER_ERR	"Invalid identifer"
 # define NON_NUMERIC_ERR 			"Info contains non-numeric characters"
 /*-------------------WORLD---MACROS----------------*/
-# define IMG_WIDTH 1280
-# define IMG_HEIGHT 720
+# define IMG_WIDTH 256
+# define IMG_HEIGHT 256
 # define VIEWPORT_HEIGHT 2.0
 /*------------------ENUM-DECLARATIONS--------------*/
 enum	e_types
@@ -195,7 +197,7 @@ typedef struct	s_window
 /*-------------FUNCTION-PROTOTYPES----------------*/
 void	calc_first_pixel(t_world *world);
 void	calc_upper_left(t_world *world);
-unsigned int	calculate_pixel_color(t_ray *ray, t_world *world);
+int	calculate_pixel_color(t_ray *ray, t_world *world);
 int		ft_arrfree(char **arr);
 size_t	ft_arrlen(char **arr);
 int		ft_assign_element_values(t_list **list, char *line);
