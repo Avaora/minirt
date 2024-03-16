@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:43 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/14 17:14:44 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/16 03:52:55 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	set_objects(t_world *world, t_list const *scene)
 {
 	t_scene	*obj;
 
+	world->objs = NULL;
 	while (scene != NULL)
 	{
 		obj = scene->content;

@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 23:10:58 by bukaya            #+#    #+#             */
-/*   Updated: 2024/03/14 16:55:10 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/16 08:24:45 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	t_world		world;
 	t_window	win;
 
+	(void)current_element;
 	scene_elements = NULL;
 	if (argc != 2)
 		return (ft_puterror("Invalid number of arguments"));
@@ -27,6 +28,7 @@ int	main(int argc, char **argv)
 		ft_lstclear(&scene_elements, free);
 		exit(FAILURE);
 	}
+	/* THIS PART MAKES scene_elements NULL BECAUSE IT ASSIGNS ITS NEXT NODE TO ITSELF UNTIL BECOME A NULL
 	while (scene_elements)
 	{
 		current_element = (t_scene *)scene_elements->content;
@@ -44,7 +46,7 @@ int	main(int argc, char **argv)
 			current_element->vector[1], current_element->vector[2]);
 		printf("\n");
 		scene_elements = scene_elements->next;
-	}
+	}*/
 
 	make_world(&world, scene_elements);
 	make_window(&world, &win);

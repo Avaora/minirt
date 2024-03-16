@@ -35,8 +35,8 @@
 # define UNDEFINED_IDENTIFIER_ERR	"Invalid identifer"
 # define NON_NUMERIC_ERR 			"Info contains non-numeric characters"
 /*-------------------WORLD---MACROS----------------*/
-# define IMG_WIDTH 1280
-# define IMG_HEIGHT 720
+# define IMG_WIDTH 1920
+# define IMG_HEIGHT 1080
 # define VIEWPORT_HEIGHT 2.0
 /*------------------ENUM-DECLARATIONS--------------*/
 enum	e_types
@@ -102,12 +102,12 @@ typedef struct	s_counter
 	int	light;
 }				t_counter;
 
-typedef struct		s_color
+typedef struct	s_color
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}					t_color;
+	int			r;
+	int			g;
+	int			b;
+}				t_color;
 
 typedef struct	s_vect
 {
@@ -203,10 +203,10 @@ typedef struct	s_window
 
 /*-------------FUNCTION-PROTOTYPES----------------*/
 void	calc_first_pixel(t_world *world);
-int		calc_pixel_color();
+t_color	calc_pixel_color(t_world *world);
 void	calc_upper_left(t_world *world);
 void	calc_vw_pixel(t_world *world, t_window *win);
-void	fbuf_pixel_put(t_window *win, int color);
+void	fbuf_pixel_put(t_window *win, t_color *color);
 int		ft_arrfree(char **arr);
 size_t	ft_arrlen(char **arr);
 int		ft_assign_element_values(t_list **list, char *line);
@@ -245,8 +245,6 @@ void	set_obj_cylinder(t_world *world, t_scene const *scene);
 void	set_obj_plane(t_world *world, t_scene const *scene);
 void	set_obj_sphere(t_world *world, t_scene const *scene);
 void	set_objects(t_world *world, t_list const *scene);
-void	set_screen(t_world *world);
-void	set_viewport_vects(t_world *world);
 t_vect	vect_add(t_vect const *vect1, t_vect const *vect2);
 double	vect_dot(t_vect const *vect1, t_vect const *vect2);
 double	vect_len(t_vect const *vect);
