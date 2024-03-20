@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:13 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/14 17:14:14 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/20 04:16:27 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	set_light(t_world *world, t_scene const *scene)
 {
+	world->light.id = LIGHT;
 	world->light.center.x = scene->coord[0];
 	world->light.center.y = scene->coord[1];
 	world->light.center.z = scene->coord[2];

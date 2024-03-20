@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:13:48 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/16 08:48:35 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:48:01 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	make_world(t_world *world, t_list const *scene)
 	if (world->image_height < 128)
 		world->image_height = 128;
 	world->viewport_height = VIEWPORT_HEIGHT;
-	if (world->viewport_height < 1)
-		world->viewport_height = 1.0;
+	if (world->viewport_height < 2.0)
+		world->viewport_height = 2.0;
 	world->viewport_width = world->viewport_height
 		* ((double)world->image_width / world->image_height);
 	world->viewport_u.x = world->viewport_width;
@@ -36,7 +36,7 @@ void	make_world(t_world *world, t_list const *scene)
 				((double)1 / world->image_width));
 	world->delta_v = vect_scale(&world->viewport_v,
 				((double)1 / world->image_height));
-	world->camera.focal_length = (vect_len(&world->viewport_u) / 2)
+	world->camera.focal_length = (world->viewport_width / 2)
 		/ tan((world->camera.field_of_view / 2) * (M_PI / 180));
 	calc_upper_left(world);
 	calc_first_pixel(world);

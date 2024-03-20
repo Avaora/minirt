@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:22 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/14 17:14:23 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/20 04:25:31 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	set_obj_plane(t_world *world, t_scene const *scene)
 {
-	t_plane	*obj;
+	t_objs	*obj;
 	t_list	*node;
 
 	obj = zalloc(sizeof(*obj));
 	if (obj == NULL)
 		set_err(NULL);
+	obj->id = PLANE;
 	obj->center.x = scene->coord[0];
 	obj->center.y = scene->coord[1];
 	obj->center.z = scene->coord[2];

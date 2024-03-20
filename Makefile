@@ -4,13 +4,16 @@ LIBFT_DIR = libft/
 SRCS_DIR = src/
 HEADS = miniRT.h libft.h mlx.h get_next_line.h
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -I $(INC_DIR)
+CFLAGS = -fsanitize=address -Wall -Wextra -Werror -I $(INC_DIR)
 LIBS = -L $(LIBMLX_DIR) -lmlx -L $(LIBFT_DIR) -lft -lm -framework OpenGL -framework AppKit
 RM = rm -f
 FILES = calc_first_pixel.c \
+		calc_nearest.c \
+		calc_vw_pixel_and_ray.c \
 		calc_pixel_color.c \
+		calc_ray_hit.c \
 		calc_upper_left.c \
-		calc_vw_pixel.c \
+		cast_ray.c \
 		fbuf_pixel_put.c \
 		ft_arrfree.c \
 		ft_arrlen.c \
@@ -36,8 +39,11 @@ FILES = calc_first_pixel.c \
 		ft_readline.c \
 		ft_safecmp.c \
 		ft_split_set.c \
-		get_next_line.c \
 		get_next_line_utils.c \
+		get_next_line.c \
+		hit_cylinder.c \
+		hit_plane.c \
+		hit_sphere.c \
 		make_window.c \
 		make_world.c \
 		render.c \
@@ -45,12 +51,14 @@ FILES = calc_first_pixel.c \
 		set_ambient.c \
 		set_camera.c \
 		set_err.c \
+		set_hit_struct.c \
 		set_light.c \
 		set_obj_cylinder.c \
 		set_obj_plane.c \
 		set_obj_sphere.c \
 		set_objects.c \
 		vect_add.c \
+		vect_cross.c \
 		vect_dot.c \
 		vect_len.c \
 		vect_scale.c \

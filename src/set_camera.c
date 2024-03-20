@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:04 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/14 17:14:05 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/20 04:16:04 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	set_camera(t_world *world, t_scene const *scene)
 {
+	world->camera.id = CAMERA;
 	world->camera.center.x = scene->coord[0];
 	world->camera.center.y = scene->coord[1];
 	world->camera.center.z = scene->coord[2];

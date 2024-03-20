@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:18 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/14 17:14:19 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/20 04:25:02 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	set_obj_cylinder(t_world *world, t_scene const *scene)
 {
-	t_cylinder	*obj;
+	t_objs		*obj;
 	t_list		*node;
 
 	obj = zalloc(sizeof(*obj));
 	if (obj == NULL)
 		set_err(NULL);
+	obj->id = CYLINDER;
 	obj->center.x = scene->coord[0];
 	obj->center.y = scene->coord[1];
 	obj->center.z = scene->coord[2];

@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:26 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/14 17:14:26 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/20 04:25:56 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	set_obj_sphere(t_world *world, t_scene const *scene)
 {
-	t_sphere	*obj;
+	t_objs		*obj;
 	t_list		*node;
 
 	obj = zalloc(sizeof(*obj));
 	if (obj == NULL)
 		set_err(NULL);
+	obj->id = SPHERE;
 	obj->center.x = scene->coord[0];
 	obj->center.y = scene->coord[1];
 	obj->center.z = scene->coord[2];

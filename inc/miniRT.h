@@ -35,9 +35,11 @@
 # define UNDEFINED_IDENTIFIER_ERR	"Invalid identifer"
 # define NON_NUMERIC_ERR 			"Info contains non-numeric characters"
 /*-------------------WORLD---MACROS----------------*/
-# define IMG_WIDTH 1920
-# define IMG_HEIGHT 1080
+# define IMG_WIDTH 600
+# define IMG_HEIGHT 600
 # define VIEWPORT_HEIGHT 2.0
+# define T_MAX 2147483647
+# define T_MIN -2147483648
 /*------------------ENUM-DECLARATIONS--------------*/
 enum	e_types
 {
@@ -124,12 +126,14 @@ typedef struct	s_ray
 
 typedef struct	s_amb_light
 {
+	int			id;
 	double		power;
 	t_color		color;
 }				t_amb_light;
 
 typedef struct	s_camera
 {
+	int			id;
 	t_vect		center;
 	t_vect		direction;
 	double		field_of_view;
@@ -138,33 +142,29 @@ typedef struct	s_camera
 
 typedef struct	s_light
 {
+	int			id;
 	t_vect		center;
 	double		power;
 	t_color		color;
 }				t_light;
 
-typedef struct	s_sphere
+typedef struct	s_objs
 {
-	t_vect		center;
-	double		diameter;
-	t_color		color;
-}				t_sphere;
-
-typedef struct	s_plane
-{
-	t_vect		center;
-	t_vect		direction;
-	t_color		color;
-}				t_plane;
-
-typedef struct	s_cylinder
-{
+	int			id;
 	t_vect		center;
 	t_vect		direction;
 	double		diameter;
 	double		height;
 	t_color		color;
-}				t_cylinder;
+}				t_objs;
+
+typedef struct	s_hit
+{
+	int			is_hit;
+	t_vect		normal;
+	t_vect		point;
+	double		t;
+}				t_hit;
 
 typedef struct	s_world
 {
@@ -182,6 +182,8 @@ typedef struct	s_world
 	t_vect		upper_left;
 	t_vect		first_pixel;
 	t_vect		vw_pixel;
+	t_ray		ray;
+	t_hit		hit;
 	t_list		*objs;
 }				t_world;
 
@@ -203,9 +205,12 @@ typedef struct	s_window
 
 /*-------------FUNCTION-PROTOTYPES----------------*/
 void	calc_first_pixel(t_world *world);
+void	calc_nearest(t_world *world, double t, t_objs const *obj);
+void	calc_vw_pixel_and_ray(t_world *world, t_window *win);
 t_color	calc_pixel_color(t_world *world);
+void	calc_ray_hit(t_world *world);
 void	calc_upper_left(t_world *world);
-void	calc_vw_pixel(t_world *world, t_window *win);
+t_vect	cast_ray(t_ray const *ray, double t);
 void	fbuf_pixel_put(t_window *win, t_color *color);
 int		ft_arrfree(char **arr);
 size_t	ft_arrlen(char **arr);
@@ -233,6 +238,9 @@ int		ft_safecmp(const char *str1, const char *str2, size_t len);
 const char	*ft_isinset(const char *str, const char *set, size_t i);
 size_t	ft_word_counter(const char *str, const char *set);
 char	**ft_split_set(const char *str, const char *set);
+void	hit_cylinder(t_world *world, t_objs *cy);
+void	hit_plane(t_world *world, t_objs *pl);
+void	hit_sphere(t_world *world, t_objs *sp);
 void	make_window(t_world *world, t_window *win);
 void	make_world(t_world *world, t_list const *scene);
 void	render(t_world *world, t_window *win);
@@ -240,12 +248,14 @@ void	*rezalloc(void *ptr, size_t c_size, size_t n_size);
 void	set_ambient(t_world *world, t_scene const *scene);
 void	set_camera(t_world *world, t_scene const *scene);
 void	set_err(const char *msg);
+void	set_hit_struct(t_world *world);
 void	set_light(t_world *world, t_scene const *scene);
 void	set_obj_cylinder(t_world *world, t_scene const *scene);
 void	set_obj_plane(t_world *world, t_scene const *scene);
 void	set_obj_sphere(t_world *world, t_scene const *scene);
 void	set_objects(t_world *world, t_list const *scene);
 t_vect	vect_add(t_vect const *vect1, t_vect const *vect2);
+t_vect	vect_cross(t_vect const *vect1, t_vect const *vect2);
 double	vect_dot(t_vect const *vect1, t_vect const *vect2);
 double	vect_len(t_vect const *vect);
 t_vect	vect_scale(t_vect const *vect, double scalar);

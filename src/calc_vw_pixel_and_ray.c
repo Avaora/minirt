@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_vw_pixel.c                                    :+:      :+:    :+:   */
+/*   calc_vw_pixel_and_ray.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:13:19 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/14 17:13:20 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:10:52 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-void	calc_vw_pixel(t_world *world, t_window *win)
+void	calc_vw_pixel_and_ray(t_world *world, t_window *win)
 {
 	t_vect	tmp;
 
@@ -20,4 +20,6 @@ void	calc_vw_pixel(t_world *world, t_window *win)
 	world->vw_pixel = vect_add(&world->first_pixel, &tmp);
 	tmp = vect_scale(&world->delta_v, win->img_y);
 	world->vw_pixel = vect_add(&world->vw_pixel, &tmp);
+	world->ray.origin = world->camera.center;
+	world->ray.direction = vect_sub(&world->vw_pixel, &world->camera.center);
 }
