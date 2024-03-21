@@ -158,13 +158,14 @@ typedef struct	s_objs
 	t_color		color;
 }				t_objs;
 
-typedef struct	s_hit
+typedef struct		s_hit
 {
-	int			is_hit;
-	t_vect		normal;
-	t_vect		point;
-	double		t;
-}				t_hit;
+	int				is_hit;
+	t_objs const	*obj;
+	t_vect			point;
+	t_vect			normal;
+	double			t;
+}					t_hit;
 
 typedef struct	s_world
 {

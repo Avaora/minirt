@@ -5,6 +5,7 @@ void	calc_nearest(t_world *world, double t, t_objs const *obj)
 	if (t >= world->hit.t)
 		return ;
 	world->hit.is_hit = 1;
+	world->hit.obj = obj;
 	if (obj->id == PLANE)
 	{
 		return;
