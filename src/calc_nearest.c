@@ -8,7 +8,11 @@ void	calc_nearest(t_world *world, double t, t_objs const *obj)
 	world->hit.obj = obj;
 	if (obj->id == PLANE)
 	{
-		return;
+		world->hit.point = cast_ray(&world->ray, t);
+		world->hit.normal = obj->direction;
+		if (vect_dot(&obj->direction, &world->ray.direction) > 0)
+			world->hit.normal = vect_scale(&obj->direction, -1.0);
+		world->hit.t = t;
 	}
 	else if (obj->id == SPHERE)
 	{

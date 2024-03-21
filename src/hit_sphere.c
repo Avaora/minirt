@@ -21,12 +21,4 @@ void	hit_sphere(t_world *world, t_objs *sp)
 	if ((c <= T_MIN) || (T_MAX <= c))
 			return ;
 	calc_nearest(world, c, sp);
-	/*if (c < world->hit.t)
-	{
-		world->hit.is_hit = 1;
-		world->hit.t = c;
-		world->hit.point = cast_ray(&world->ray, world->hit.t);
-		world->hit.normal = vect_sub(&world->hit.point, &sp->center);
-		world->hit.normal = vect_scale(&world->hit.normal, (1 / (sp->diameter/2)));
-	}*/
 }
