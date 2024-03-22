@@ -20,5 +20,7 @@ void	hit_sphere(t_world *world, t_objs *sp)
 		c = (-b + sqrt(disc)) / (2.0 * a);
 	if ((c <= T_MIN) || (T_MAX <= c))
 			return ;
+	if (c < 0)
+		return ;
 	calc_nearest(world, c, sp);
 }

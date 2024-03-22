@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:13:05 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/22 05:46:38 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:37:21 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_color	calc_pixel_color(t_world *world)
 	(void)intsec;
 	if (world->hit.is_hit == 1)
 	{
-		world->ray.origin = vect_scale(&world->hit.obj->direction, 0.001);
+		world->ray.origin = vect_scale(&world->hit.normal, 0.0001);
 		world->ray.origin = vect_add(&world->hit.point, &world->ray.origin);
 		world->ray.direction = vect_sub(&world->light.center, &world->ray.origin);
 		//world->ray.direction = vect_unit(&world->ray.direction);
