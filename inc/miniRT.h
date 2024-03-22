@@ -161,6 +161,7 @@ typedef struct	s_objs
 typedef struct		s_hit
 {
 	int				is_hit;
+	int				in_same_direction;
 	t_objs const	*obj;
 	t_vect			point;
 	t_vect			normal;

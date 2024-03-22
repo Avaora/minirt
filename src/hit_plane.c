@@ -9,7 +9,7 @@ void	hit_plane(t_world *world, t_objs *pl)
 	div = vect_dot(&pl->direction, &world->ray.direction);
 	if (div == 0)
 	{
-		oc = vect_sub(&pl->center, &world->camera.center);
+		oc = vect_sub(&pl->center, &world->ray.origin);
 		if (vect_dot(&pl->direction, &oc) == 0)
 		{
 			res = vect_len(&world->ray.direction);
