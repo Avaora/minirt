@@ -38,8 +38,9 @@
 # define IMG_WIDTH 600
 # define IMG_HEIGHT 600
 # define VIEWPORT_HEIGHT 2.0
-# define T_MAX 2147483647
-# define T_MIN -2147483648
+# define T_MAX 2147483647.0
+# define T_MIN -2147483648.0
+# define T_ERR 2500000000.0
 /*------------------ENUM-DECLARATIONS--------------*/
 enum	e_types
 {
@@ -211,6 +212,8 @@ void	calc_nearest(t_world *world, double t, t_objs const *obj);
 void	calc_vw_pixel_and_ray(t_world *world, t_window *win);
 t_color	calc_pixel_color(t_world *world);
 void	calc_ray_hit(t_world *world);
+void	calc_shadow_ray(t_world *world);
+void	calc_shadow(t_world *world, double t, t_objs *obj);
 void	calc_upper_left(t_world *world);
 t_vect	cast_ray(t_ray const *ray, double t);
 void	fbuf_pixel_put(t_window *win, t_color *color);
@@ -240,9 +243,9 @@ int		ft_safecmp(const char *str1, const char *str2, size_t len);
 const char	*ft_isinset(const char *str, const char *set, size_t i);
 size_t	ft_word_counter(const char *str, const char *set);
 char	**ft_split_set(const char *str, const char *set);
-void	hit_cylinder(t_world *world, t_objs *cy);
-void	hit_plane(t_world *world, t_objs *pl);
-void	hit_sphere(t_world *world, t_objs *sp);
+double	hit_cylinder(t_world *world, t_objs *cy);
+double	hit_plane(t_world *world, t_objs *pl);
+double	hit_sphere(t_world *world, t_objs *sp);
 void	make_window(t_world *world, t_window *win);
 void	make_world(t_world *world, t_list const *scene);
 void	render(t_world *world, t_window *win);

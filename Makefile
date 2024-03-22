@@ -4,7 +4,7 @@ LIBFT_DIR = libft/
 SRCS_DIR = src/
 HEADS = miniRT.h libft.h mlx.h get_next_line.h
 CC = gcc
-CFLAGS = -fsanitize=address -Wall -Wextra -Werror -I $(INC_DIR)
+CFLAGS = -g -Wall -Wextra -Werror -I $(INC_DIR)
 LIBS = -L $(LIBMLX_DIR) -lmlx -L $(LIBFT_DIR) -lft -lm -framework OpenGL -framework AppKit
 RM = rm -f
 FILES = calc_first_pixel.c \
@@ -12,6 +12,8 @@ FILES = calc_first_pixel.c \
 		calc_vw_pixel_and_ray.c \
 		calc_pixel_color.c \
 		calc_ray_hit.c \
+		calc_shadow_ray.c \
+		calc_shadow.c \
 		calc_upper_left.c \
 		cast_ray.c \
 		fbuf_pixel_put.c \
