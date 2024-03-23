@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:13:05 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/22 13:10:30 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/23 02:56:13 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,28 @@
 
 t_color	calc_pixel_color(t_world *world)
 {
+	t_color	diffuse;
+	t_color	amb;
 	t_color	color;
-	t_hit	intsec;
 
-	intsec = world->hit;
-	(void)intsec;
 	if (world->hit.is_hit == 1)
 	{
-		world->ray.origin = vect_scale(&world->hit.normal, 0.0001);
-		world->ray.origin = vect_add(&world->hit.point, &world->ray.origin);
-		world->ray.direction = vect_sub(&world->light.center, &world->ray.origin);
-		world->ray.direction = vect_unit(&world->ray.direction);
-		calc_shadow_ray(world);	
-		if (world->hit.is_hit == 0)
-		{
-			color.r = world->hit.obj->color.r;
-			color.g = world->hit.obj->color.g;
-			color.b = world->hit.obj->color.b;
-			return (color);
-		}
+		amb = calc_amb_light(&world->amb_light, world->hit.obj);
+		diffuse = calc_diffuse_light(&world->light, &world->hit);
+		add_ray_offset(world);
+		calc_shadow_ray(world);
+		if (world->hit.is_hit == 1)
+			return (amb);
 		else
 		{
-			color.r = 0;
-			color.g = 0;
-			color.b = 0;
+			color.r = amb.r + diffuse.r;
+			color.g = amb.g + diffuse.g;
+			color.b = amb.b + diffuse.b;
 			return (color);
 		}
 	}
-	color.r = 255;
-	color.g = 255;
-	color.b = 255;
+	color.r = 1.0;
+	color.g = 1.0;
+	color.b = 1.0;
 	return (color);
 }

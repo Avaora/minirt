@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:13 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/20 04:16:27 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/23 02:49:53 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_light(t_world *world, t_scene const *scene)
 	world->light.center.y = scene->coord[1];
 	world->light.center.z = scene->coord[2];
 	world->light.power = scene->brightness;
-	world->light.color.r = scene->rgb[0];
-	world->light.color.g = scene->rgb[1];
-	world->light.color.b = scene->rgb[2];
+	world->light.color.r = scene->rgb[0] / 255.0;
+	world->light.color.g = scene->rgb[1] / 255.0;
+	world->light.color.b = scene->rgb[2] / 255.0;
 }

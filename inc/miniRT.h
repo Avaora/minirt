@@ -107,9 +107,9 @@ typedef struct	s_counter
 
 typedef struct	s_color
 {
-	int			r;
-	int			g;
-	int			b;
+	double		r;
+	double		g;
+	double		b;
 }				t_color;
 
 typedef struct	s_vect
@@ -162,7 +162,6 @@ typedef struct	s_objs
 typedef struct		s_hit
 {
 	int				is_hit;
-	int				in_same_direction;
 	t_objs const	*obj;
 	t_vect			point;
 	t_vect			normal;
@@ -207,14 +206,17 @@ typedef struct	s_window
 }				t_window;
 
 /*-------------FUNCTION-PROTOTYPES----------------*/
+void	add_ray_offset(t_world *world);
+t_color	calc_amb_light(t_amb_light const *amb_l, t_objs const *obj);
+t_color	calc_diffuse_light(t_light const *light, t_hit const *hit);
 void	calc_first_pixel(t_world *world);
-void	calc_nearest(t_world *world, double t, t_objs const *obj);
-void	calc_vw_pixel_and_ray(t_world *world, t_window *win);
+void	calc_nearest(t_world *world, t_objs const *obj, double t);
 t_color	calc_pixel_color(t_world *world);
 void	calc_ray_hit(t_world *world);
 void	calc_shadow_ray(t_world *world);
-void	calc_shadow(t_world *world, double t, t_objs *obj);
+void	calc_shadow(t_world *world, double t);
 void	calc_upper_left(t_world *world);
+void	calc_vw_pixel_and_ray(t_world *world, t_window *win);
 t_vect	cast_ray(t_ray const *ray, double t);
 void	fbuf_pixel_put(t_window *win, t_color *color);
 int		ft_arrfree(char **arr);
@@ -243,9 +245,9 @@ int		ft_safecmp(const char *str1, const char *str2, size_t len);
 const char	*ft_isinset(const char *str, const char *set, size_t i);
 size_t	ft_word_counter(const char *str, const char *set);
 char	**ft_split_set(const char *str, const char *set);
-double	hit_cylinder(t_world *world, t_objs *cy);
-double	hit_plane(t_world *world, t_objs *pl);
-double	hit_sphere(t_world *world, t_objs *sp);
+double	hit_cylinder(t_ray const *ray, t_objs const *cy);
+double	hit_plane(t_ray const *ray, t_objs const *pl);
+double	hit_sphere(t_ray const *ray, t_objs const *sp);
 void	make_window(t_world *world, t_window *win);
 void	make_world(t_world *world, t_list const *scene);
 void	render(t_world *world, t_window *win);

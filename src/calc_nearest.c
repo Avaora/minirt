@@ -1,6 +1,6 @@
 #include <miniRT.h>
 
-void	calc_nearest(t_world *world, double t, t_objs const *obj)
+void	calc_nearest(t_world *world, t_objs const *obj, double t)
 {
 	world->hit.point = cast_ray(&world->ray, t);
 	if (obj->id == PLANE)

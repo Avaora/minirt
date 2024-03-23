@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:18 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/20 04:25:02 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/23 02:50:45 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	set_obj_cylinder(t_world *world, t_scene const *scene)
 	obj->direction.z = scene->vector[2];
 	obj->diameter = scene->diameter;
 	obj->height = scene->height;
-	obj->color.r = scene->rgb[0];
-	obj->color.g = scene->rgb[1];
-	obj->color.b = scene->rgb[2];
+	obj->color.r = scene->rgb[0] / 255.0;
+	obj->color.g = scene->rgb[1] / 255.0;
+	obj->color.b = scene->rgb[2] / 255.0;
 	node = ft_lstnew(obj);
 	if (node == NULL)
 		set_err(NULL);

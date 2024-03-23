@@ -4,22 +4,24 @@ void	calc_shadow_ray(t_world *world)
 {
 	t_list	*lst;
 	t_objs	*obj;
+	double	min_so_far;
 	double	t;
 
-	t = T_ERR;
 	lst = world->objs;
-	set_hit_struct(world);
+	min_so_far = T_MAX;
+	world->hit.is_hit = 0;
 	while (lst != NULL)
 	{
 		obj = lst->content;
 		if (obj->id == PLANE)
-			t = hit_plane(world, obj);
+			t = hit_plane(&world->ray, obj);
 		else if (obj->id == SPHERE)
-			t = hit_sphere(world, obj);
+			t = hit_sphere(&world->ray, obj);
 		else if (obj->id == CYLINDER)
-			t = hit_cylinder(world, obj);
-		if ((t >= 0) && (t <= world->hit.t) && (t < T_MAX))
-			calc_shadow(world, t, obj);
+			t = hit_cylinder(&world->ray, obj);
+		if ((t >= 0) && (t <= min_so_far) && (t < T_MAX))
+			min_so_far = t;
 		lst = lst->next;
 	}
+	calc_shadow(world, min_so_far);
 }

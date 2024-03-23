@@ -1,8 +1,8 @@
 #include <miniRT.h>
 
-double	hit_cylinder(t_world *world, t_objs *cy)
+double	hit_cylinder(t_ray const *ray, t_objs const *cy)
 {
 	(void)cy;
-	(void)world;
+	(void)ray;
 	return (0);
 }

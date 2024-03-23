@@ -7,14 +7,17 @@ CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror -I $(INC_DIR)
 LIBS = -L $(LIBMLX_DIR) -lmlx -L $(LIBFT_DIR) -lft -lm -framework OpenGL -framework AppKit
 RM = rm -f
-FILES = calc_first_pixel.c \
+FILES = add_ray_offset.c \
+		calc_amb_light.c \
+		calc_diffuse_light.c \
+		calc_first_pixel.c \
 		calc_nearest.c \
-		calc_vw_pixel_and_ray.c \
 		calc_pixel_color.c \
 		calc_ray_hit.c \
 		calc_shadow_ray.c \
 		calc_shadow.c \
 		calc_upper_left.c \
+		calc_vw_pixel_and_ray.c \
 		cast_ray.c \
 		fbuf_pixel_put.c \
 		ft_arrfree.c \

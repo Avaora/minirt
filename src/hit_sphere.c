@@ -1,6 +1,6 @@
 #include <miniRT.h>
 
-double	hit_sphere(t_world *world, t_objs *sp)
+double	hit_sphere(t_ray const *ray, t_objs const *sp)
 {
 	t_vect	oc;
 	double	a;
@@ -8,9 +8,9 @@ double	hit_sphere(t_world *world, t_objs *sp)
 	double	c;
 	double	disc;
 
-	oc = vect_sub(&world->ray.origin, &sp->center);
-	a = vect_dot(&world->ray.direction, &world->ray.direction);
-	b = 2.0 * vect_dot(&world->ray.direction, &oc);
+	oc = vect_sub(&ray->origin, &sp->center);
+	a = vect_dot(&ray->direction, &ray->direction);
+	b = 2.0 * vect_dot(&ray->direction, &oc);
 	c = vect_dot(&oc, &oc) - (sp->diameter / 2) * (sp->diameter / 2);
 	disc = (b * b) - (4.0 * a * c);
 	if (disc < 0.0)

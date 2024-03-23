@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:13:48 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/19 22:48:01 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/23 02:48:29 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 void	make_world(t_world *world, t_list const *scene)
 {
 	set_objects(world, scene);
+	// CHANGE THIS
+	world->light.color.r = 1;
+	world->light.color.g = 1;
+	world->light.color.b = 1;
 	world->image_width = IMG_WIDTH;
 	if (world->image_width < 128)
 		world->image_width = 128;

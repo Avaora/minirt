@@ -1,18 +1,18 @@
 #include <miniRT.h>
 
-double	hit_plane(t_world *world, t_objs *pl)
+double	hit_plane(t_ray const *ray, t_objs const *pl)
 {
 	double	res;
 	double	div;
 	t_vect	oc;
 	
-	div = vect_dot(&pl->direction, &world->ray.direction);
-	oc = vect_sub(&pl->center, &world->ray.origin);
+	div = vect_dot(&pl->direction, &ray->direction);
+	oc = vect_sub(&pl->center, &ray->origin);
 	res = vect_dot(&pl->direction, &oc);
 	if (div == 0)
 	{
 		if (res == 0)
-			return (vect_len(&world->ray.direction));
+			return (vect_len(&ray->direction));
 		else
 			return (T_ERR);
 	}
