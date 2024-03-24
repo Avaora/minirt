@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:13:19 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/20 16:10:52 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:13:07 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ void	calc_vw_pixel_and_ray(t_world *world, t_window *win)
 	tmp = vect_scale(&world->delta_v, win->img_y);
 	world->vw_pixel = vect_add(&world->vw_pixel, &tmp);
 	world->ray.origin = world->camera.center;
-	world->ray.direction = vect_sub(&world->vw_pixel, &world->camera.center);
+	tmp = vect_sub(&world->vw_pixel, &world->camera.center);
+	world->ray.direction = vect_unit(&tmp);
 }

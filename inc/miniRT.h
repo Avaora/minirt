@@ -35,8 +35,8 @@
 # define UNDEFINED_IDENTIFIER_ERR	"Invalid identifer"
 # define NON_NUMERIC_ERR 			"Info contains non-numeric characters"
 /*-------------------WORLD---MACROS----------------*/
-# define IMG_WIDTH 600
-# define IMG_HEIGHT 600
+# define IMG_WIDTH 1280
+# define IMG_HEIGHT 720
 # define VIEWPORT_HEIGHT 2.0
 # define T_MAX 2147483647.0
 # define T_MIN -2147483648.0
@@ -139,6 +139,10 @@ typedef struct	s_camera
 	t_vect		direction;
 	double		field_of_view;
 	double		focal_length;
+	t_vect		relative_up;
+	t_vect		u;
+	t_vect		v;
+	t_vect		w;
 }				t_camera;
 
 typedef struct	s_light
@@ -218,6 +222,7 @@ void	calc_shadow(t_world *world, double t);
 void	calc_upper_left(t_world *world);
 void	calc_vw_pixel_and_ray(t_world *world, t_window *win);
 t_vect	cast_ray(t_ray const *ray, double t);
+t_vect	check_relative_up(t_vect const *direction);
 void	fbuf_pixel_put(t_window *win, t_color *color);
 int		ft_arrfree(char **arr);
 size_t	ft_arrlen(char **arr);
@@ -261,6 +266,7 @@ void	set_obj_cylinder(t_world *world, t_scene const *scene);
 void	set_obj_plane(t_world *world, t_scene const *scene);
 void	set_obj_sphere(t_world *world, t_scene const *scene);
 void	set_objects(t_world *world, t_list const *scene);
+void	set_vw_vectors(t_world *world);
 t_vect	vect_add(t_vect const *vect1, t_vect const *vect2);
 t_vect	vect_cross(t_vect const *vect1, t_vect const *vect2);
 double	vect_dot(t_vect const *vect1, t_vect const *vect2);

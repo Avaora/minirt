@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 23:10:58 by bukaya            #+#    #+#             */
-/*   Updated: 2024/03/22 10:48:34 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:36:17 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int	main(int argc, char **argv)
 	render(&world, &win);
 	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, win.img_ptr, 0, 0);
 	mlx_loop(win.mlx_ptr);
-	
+
+	//FREE THINGS
+	free(win.win_title);
 	ft_lstclear(&scene_elements, free);
 	return (0);
 }

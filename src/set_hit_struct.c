@@ -10,5 +10,5 @@ void	set_hit_struct(t_world *world)
 	world->hit.normal.x = 0;
 	world->hit.normal.y = 0;
 	world->hit.normal.z = 0;
-	world->hit.t = T_MAX;
+	world->hit.t = 0;
 }

@@ -19,6 +19,7 @@ FILES = add_ray_offset.c \
 		calc_upper_left.c \
 		calc_vw_pixel_and_ray.c \
 		cast_ray.c \
+		check_relative_up.c \
 		fbuf_pixel_put.c \
 		ft_arrfree.c \
 		ft_arrlen.c \
@@ -62,6 +63,7 @@ FILES = add_ray_offset.c \
 		set_obj_plane.c \
 		set_obj_sphere.c \
 		set_objects.c \
+		set_vw_vectors.c \
 		vect_add.c \
 		vect_cross.c \
 		vect_dot.c \

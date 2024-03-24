@@ -4,11 +4,11 @@ void	calc_shadow_ray(t_world *world)
 {
 	t_list	*lst;
 	t_objs	*obj;
-	double	min_so_far;
 	double	t;
+	double	min_so_far;
 
 	lst = world->objs;
-	min_so_far = T_MAX;
+	min_so_far = T_ERR;
 	world->hit.is_hit = 0;
 	while (lst != NULL)
 	{
@@ -23,5 +23,6 @@ void	calc_shadow_ray(t_world *world)
 			min_so_far = t;
 		lst = lst->next;
 	}
-	calc_shadow(world, min_so_far);
+	if (min_so_far < T_MAX)
+		calc_shadow(world, min_so_far);
 }

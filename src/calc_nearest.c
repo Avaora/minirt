@@ -10,7 +10,7 @@ void	calc_nearest(t_world *world, t_objs const *obj, double t)
 	else if (obj->id == SPHERE)
 	{
 		world->hit.normal = vect_sub(&world->hit.point, &obj->center);
-		world->hit.normal = vect_unit(&world->hit.normal);
+		world->hit.normal = vect_scale(&world->hit.normal, (1.0 / (obj->diameter / 2)));
 	}
 	else if (obj->id == CYLINDER)
 	{
