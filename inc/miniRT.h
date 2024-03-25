@@ -37,7 +37,6 @@
 /*-------------------WORLD---MACROS----------------*/
 # define IMG_WIDTH 1280
 # define IMG_HEIGHT 720
-# define VIEWPORT_HEIGHT 2.0
 # define T_MAX 2147483647.0
 # define T_MIN -2147483648.0
 # define T_ERR 2500000000.0
@@ -68,13 +67,6 @@ enum	e_range
 	e_fov,
 	e_rgb,
 	e_light,
-};
-
-enum	e_rgb
-{
-	r = 0,
-	g,
-	b,
 };
 
 enum	e_coord
@@ -250,6 +242,7 @@ int		ft_safecmp(const char *str1, const char *str2, size_t len);
 const char	*ft_isinset(const char *str, const char *set, size_t i);
 size_t	ft_word_counter(const char *str, const char *set);
 char	**ft_split_set(const char *str, const char *set);
+double	get_near(t_ray const *ray, double t1, double t2);
 double	hit_cylinder(t_ray const *ray, t_objs const *cy);
 double	hit_plane(t_ray const *ray, t_objs const *pl);
 double	hit_sphere(t_ray const *ray, t_objs const *sp);

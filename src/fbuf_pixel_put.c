@@ -6,7 +6,7 @@
 /*   By: ikalende <ikalende@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:13:25 by ikalende          #+#    #+#             */
-/*   Updated: 2024/03/23 02:54:47 by ikalende         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:50:57 by ikalende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,18 @@ void	fbuf_pixel_put(t_window *win, t_color *color)
 
 	if (color->r > 1.0)
 		color->r = 1.0;
+	if (color->r < 0.0)
+		color->r = 0.0;
+
 	if (color->g > 1.0)
 		color->g = 1.0;
+	if (color->g < 0.0)
+		color->g = 0.0;
+		
 	if (color->b > 1.0)
 		color->b = 1.0;
+	if (color->b < 0.0)
+		color->b = 0.0;
 	pix_color = 0;
 	pix_color = (int)(255.999 * color->r) << 16;
 	pix_color += (int)(255.999 * color->g) << 8;

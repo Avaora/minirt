@@ -45,6 +45,7 @@ FILES = add_ray_offset.c \
 		ft_readline.c \
 		ft_safecmp.c \
 		ft_split_set.c \
+		get_near.c \
 		get_next_line_utils.c \
 		get_next_line.c \
 		hit_cylinder.c \
